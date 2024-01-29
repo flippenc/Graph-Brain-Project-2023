@@ -1,0 +1,56 @@
+#is hadamard bipartite graph
+def is_VB_hadamard_graph(g):
+    if not g.is_bipartite():
+        return False
+
+    V = g.vertices()
+    D = g.degree()
+    Isolated = [v for v in V if g.degree(v)==0]
+    if len(Isolated) > 2:
+        return False
+    Rest = [v for v in V if v not in Isolated]
+    n = g.order()
+    k=n/2
+    #print(k)
+    gcon = g.subgraph(Rest)
+
+    A,B = gcon.bipartite_sets()
+    if len(A) < k:
+        A = A.union(Set([Isolated[0]]))
+    if len(B) < k:
+        B = B.union(Set([Isolated[1]]))
+    if len(A) != len(B):
+        return False
+    #print(A)
+    #print(B)
+    for v in A:
+        for w in A:
+            if v != w:
+                Nv=g.neighbors(v)
+                #print("Nv is {}".format(Nv))
+                Nvc=B.difference(Nv)
+                #print("Nvc is {}".format(Nvc))
+                Nw=g.neighbors(w)
+                Nwc=B.difference(Nw)
+                #print("Nwc is {}".format(Nwc))
+                S=Set(Nv).intersection(Set(Nw)) #common 1's
+                Sc=Nwc.intersection(Nvc) #common -1's
+                if len(S)+len(Sc) != k/2:
+                    return False
+
+    for v in B:
+        for w in B:
+            if v != w:
+                Nv=g.neighbors(v)
+                #print("Nv is {}".format(Nv))
+                Nvc=A.difference(Nv)
+                #print("Nvc is {}".format(Nvc))
+                Nw=g.neighbors(w)
+                Nwc=A.difference(Nw)
+                #print("Nwc is {}".format(Nwc))
+                S=Set(Nv).intersection(Set(Nw)) #common 1's
+                Sc=Nwc.intersection(Nvc) #common -1's
+                if len(S)+len(Sc) != k/2:
+                    return False
+
+    return True
