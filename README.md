@@ -22,11 +22,11 @@
     or  − 1 and whose rows are mutually orthogonal. An equivalent
     definition of a Hadamard matrix is that *H*<sub>*n*</sub> is an
     order *n* Hadamard matrix if and only if
-    *H*<sub>*n*</sub>*H*<sub>*n*</sub><sup>*T*</sup> = *n**I*<sub>*n*</sub>
-    where *I*<sub>*n*</sub> is the *n* × *n* identity matrix. It is
+    $$H_nH_n^T = nI_n$$
+    where $I_n$ is the $n \times n$ identity matrix. It is
     known that if a Hadamard matrix exists, it’s order must be 1, 2, or
     a multiple of 4. However, it is unknown if there is a Hadamard
-    matrix of order 4*k* for every positive integer *k*
+    matrix of order $4k$ for every positive integer $k$
 
 -   Two Hadamard matrices are said to be *Hadamard equivalent* if it is
     possible to obtain one matrix from the other by permuting rows,
@@ -58,23 +58,16 @@
 Directly checking if two Hadamard matrices are Hadamard equivalent by
 checking all possible row and column permutations and negations is an
 extremely difficult task computationally due to how many combinations of
-these operations are possible. If *H* is an *n* × *n* Hadamard matrix,
-then its corresponding McKay graph *M*(*H*) is a graph with vertices
-*v*<sub>1</sub>, *v*<sub>2</sub>, …, *v*<sub>*n*</sub>,
-*w*<sub>1</sub>, *w*<sub>2</sub>, …, *w*<sub>*n*</sub>,
-*v*′<sub>1</sub>, *v*′<sub>2</sub>, …, *v*′<sub>*n*</sub>, and
-*w*′<sub>1</sub>, *w*′<sub>2</sub>, …, *w*′<sub>*n*</sub> with edges
-$$\begin{aligned}
-    (v_i,w_j),(v'\_i,w'\_j) &\quad\text{if} \quad h\_{ij} = 1\quad\text{and}\\
-    (v_i,w_j'),(v'\_i,w_j) &\quad\text{if} \quad h\_{ij} = -1
-\end{aligned}$$
+these operations are possible. If $H$ is an $n \times n$ Hadamard matrix,
+then its corresponding McKay graph $M(H)$ is a graph with vertices
+$v_1, v_2, \ldots, v_n$, $w_1, w_2, \ldots, w_n$, $v'_1, v'_2, \ldots, v'_n$, and $w'_1, w'_2, \ldots, w'_n$ and edges
+$$(v_i,w_j),(v'\_i,w'_j) \quad\text{if}\quad h\_{ij} = 1 \quad\text{and}\quad (v_i,w_j'),(v'\_i,w_j) \quad\text{if}\quad h\_{ij} = -1.$$
 We can also add loops to the vertices
-*v*<sub>1</sub>, *v*<sub>2</sub>, …, *v*<sub>*n*</sub> and
-*v*′<sub>1</sub>, *v*′<sub>2</sub>, …, *v*′<sub>*n*</sub>. Without these
-loops, if *H* and *H*′ are Hadamard matrices, *M*(*H*) and *M*(*H*′) are
-equivalent if and only if *H* is Hadamard equivalent to *H*′ or
-*H*′<sup>*T*</sup>. With these loops *M*(*H*) and *M*(*H*′) are
-equivalent if and only if *H* is Hadamard equivalent to *H*′.
+$v_1, v_2, \ldots, v_n$ and $v'_1, v'_2, \ldots, v'_n$. Without these
+loops, if $H$ and $H'$ are Hadamard matrices, $M(H)$ and $M(H')$ are
+equivalent if and only if $H$ is Hadamard equivalent to $H'$ or
+$H'^T$. With these loops $M(H)$ and $M(H')$ are
+equivalent if and only if $H$ is Hadamard equivalent to $H'$
 
 -   The file `McKayFunctions.sage` contains various functions for
     exploring McKay graphs
@@ -85,11 +78,9 @@ equivalent if and only if *H* is Hadamard equivalent to *H*′.
 **Another Method of Generating Graphs from Hadamard Matrices**
 
 Vic Bednar, another student who worked on this project, described
-another method of encoding Hadamard matrices as graphs. If *H* is an
-*n* × *n* Hadamard matrix, then its corresponding VB graph *V**B*(*H*)
-is a graph with vertices (0,1), (0,2), …, (0,*n*) and
-(1,1), (1,2), …, (1,*n*) with edges
-(0,*i*), (1,*j*)  if  *h*<sub>*i*, *j*</sub> = 1.
+another method of encoding Hadamard matrices as graphs. If $H$ is an $n \times n$ 
+Hadamard matrix, then its corresponding VB graph $VB(H)$ is a graph with vertices 
+$(0,1),(0,2),\ldots,(0,n)$ and $(1,1),(1,2),\ldots,(1,n)$ with edges $$(0,i),(1,j)\quad\text{if}\quad h_{i,j} = 1.$$
 
 -   The file `VB-functions.sage` contains various functions for
     generating VB graphs from Hadamard matrices and vice versa as well
